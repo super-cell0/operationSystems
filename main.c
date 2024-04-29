@@ -3,11 +3,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-int randomAccess(int *nums, int count) {
-    
-    return 0;
-}
-
 void insert(int nums[], int *count, int number, int index) {
     if (index < 0 || index > *count) {
         printf("index无效");
@@ -20,8 +15,17 @@ void insert(int nums[], int *count, int number, int index) {
     (*count)++;
 }
 
+int random_element(int *nums, int count) {
+    srand(time(NULL));
+    int rand_index = rand() % count;
+    int rand_num = nums[rand_index];
+    return rand_num;
+}
 
 int main() {
+    
+    int nums[] = {3,4,2,1,6};
+    int count = sizeof(nums) / sizeof(nums[0]);
 
     return 0;
 }
