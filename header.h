@@ -20,6 +20,6 @@ typedef struct ListNode {
     struct ListNode *next;
 }ListNode;
 
-void printList(ListNode* head);
+void print_list(ListNode* head);
 
 #endif
