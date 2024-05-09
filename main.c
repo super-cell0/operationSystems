@@ -5,7 +5,7 @@
 #include "header.h"
 #include <stdlib.h>
 #include <time.h>
-#include <bootstrap.h>
+#include <unistd.h>
 
 // 根据所给的index插入一个值
 void insert(int nums[], int *count, int number, int index) {
@@ -128,8 +128,6 @@ int main() {
     n3->next = n4;
     n4->next = n5;
     n5->next = NULL;
-
-    bubble(nums, count);
 
     return 0;
 }
