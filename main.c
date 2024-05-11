@@ -70,6 +70,20 @@ void print_list(ListNode* head) {
     printf("\n");
 }
 
+void inititalLinkNode() {
+    ListNode *n1 = newListNode(1);
+    ListNode *n2 = newListNode(2);
+    ListNode *n3 = newListNode(3);
+    ListNode *n4 = newListNode(5);
+    ListNode *n5 = newListNode(4);
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n4;
+    n4->next = n5;
+    n5->next = NULL;
+
+}
+
 void printfArray(int array[], int count) {
     for (int i = 0; i < count; i++) {
         printf("%d, ", array[i]);
@@ -113,21 +127,111 @@ int bubble(int array[], int count) {
     return 0;
 }
 
+void selectDemo(int arr[], int count) {
+    for (int i = 0; i < count - 1; i++) {
+        int k = i;
+        for (int j = i + 1; j < count; j++) {
+            if (arr[j] < arr[k]) {
+                k = j;
+            }
+        }
+        if (k != i) {
+            int temp = arr[i];
+            arr[i] = arr[k];
+            arr[k] = temp;
+        }
+    }
+}
+
+void bubbleDemo(int arr[], int count) {
+    for (int i = count - 1; i > 0; i--) {
+        bool flag = false;
+        for (int j = 0; j < i; j++) {
+            if (arr[j] < arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+                flag = true;
+            }
+        }
+        if (!flag) {
+            break;
+        }
+    }
+}
+
+// 插入排序
+void insertSort(int arr[], int count) {
+    for (int i = 1; i < count; i++) {
+        int base = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > base) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = base;
+    }
+}
+
+void swap(int arr[], int a, int b) {
+    int temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+}
+// 快速排序
+// 哨兵划分
+int partition(int arr[], int start, int end) {
+    int base = arr[start]; // 基数
+    int left = start + 1;
+    int right = end;
+    while (left <= right) {
+        while (left <= right && arr[left] <= base) {
+            left++;
+        }
+        while (left <= right && arr[right] > base) {
+            right--;
+        }
+        if (left <= right) {
+            swap(arr, left, right);
+        }
+    }
+    swap(arr, start, right);
+    return right;
+}
+
+void quickSort(int arr[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    int pivot = partition(arr, left, right);
+    quickSort(arr, left, pivot - 1);
+    quickSort(arr, pivot+1, right);
+}
+
+void insertDemo(int arr[], int count) {
+    for (int i = 1; i < count; i++) {
+        int base = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > base) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = base;
+    }
+}
+
+
 int main() {
     
-    int nums[] = {5,14,9,8,6};
-    int count = sizeof(nums) / sizeof(nums[0]);
+    int arr[] = { 6, 3, 7, 5, 1, 2, 4, 4, 6};
+    int count = sizeof(arr) / sizeof(arr[0]);
 
-    ListNode *n1 = newListNode(1);
-    ListNode *n2 = newListNode(2);
-    ListNode *n3 = newListNode(3);
-    ListNode *n4 = newListNode(5);
-    ListNode *n5 = newListNode(4);
-    n1->next = n2;
-    n2->next = n3;
-    n3->next = n4;
-    n4->next = n5;
-    n5->next = NULL;
+    insertDemo(arr, count);
+    printf("insert sort demo\n");
+    for (int a = 0; a < count; a++) {
+        printf("%d, ", arr[a]);
+    }
+    printf("\n");
 
     return 0;
 }

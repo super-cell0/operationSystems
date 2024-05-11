@@ -182,11 +182,11 @@ int partition(int arr[], int left, int right) {
     int i = left + 1;
     int j = right;
     while (i <= j) {
-        // 从右向左找首个小于基准数的元素
+        // 从左向右找首个大于基准数的元素
         while (i<=j && arr[i] <= pivot) {
             i++;
         }
-        // 从左向右找首个大于基准数的元素
+        // 从右向左找首个小于基准数的元素
         while (i<=j && arr[j] > pivot) {
             j--;
         }
@@ -197,6 +197,7 @@ int partition(int arr[], int left, int right) {
     }
     // 将基准数交换至两子数组的分界线
     swap(arr, left, j);
+    //printArray(arr, right + 1);
     // 返回基准数的索引
     return j;
 }
@@ -213,7 +214,7 @@ void quick(int arr[], int left, int right) {
 
 
 int main() {
-    int arr[] = { 6, 3, 7, 5, 1, 2, 4};
+    int arr[] = { 6, 3, 7, 5, 1, 2, 4, 4, 6};
     int count = sizeof(arr)/sizeof(arr[0]);
     printf("原数组：\n");
     for (int i = 0; i<count; i++) {
