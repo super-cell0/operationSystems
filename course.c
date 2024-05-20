@@ -163,69 +163,15 @@ int loop_02(int n) {
     return 0;
 }
 
-void printArray(int arr[], int size) {  
-    for (int i = 0; i < size; i++) {
-        printf("%d, ", arr[i]);  
-    }  
-    printf("\n");  
-}  
-
-void swap(int arr[],int a, int b) {
-    int temp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = temp;
-}
-
-int partition(int arr[], int left, int right) {
-    // 以 arr[left] 为基准数
-    int pivot = arr[left];
-    int i = left + 1;
-    int j = right;
-    while (i <= j) {
-        // 从左向右找首个大于基准数的元素
-        while (i<=j && arr[i] <= pivot) {
-            i++;
-        }
-        // 从右向左找首个小于基准数的元素
-        while (i<=j && arr[j] > pivot) {
-            j--;
-        }
-        // 交换这两个元素
-        if (i<=j) {
-            swap(arr, i, j); 
+// 找数组中的最小值
+void minValue(int nums[], int count) {
+    int k = nums[0];
+    int minIndex;
+    for (int i = 0; i < count; i++) {
+        if (nums[i] < k) {
+            k = nums[i];
+            minIndex = i;
         }
     }
-    // 将基准数交换至两子数组的分界线
-    swap(arr, left, j);
-    //printArray(arr, right + 1);
-    // 返回基准数的索引
-    return j;
-}
-
-void quick(int arr[], int left, int right) {
-    if (left >= right) {
-        return;
-    }
-    // 哨兵划分
-    int pivot = partition(arr, left, right);
-    quick(arr, left, pivot-1);
-    quick(arr, pivot+1, right);
-}
-
-
-int main() {
-    int arr[] = { 6, 3, 7, 5, 1, 2, 4, 4, 6};
-    int count = sizeof(arr)/sizeof(arr[0]);
-    printf("原数组：\n");
-    for (int i = 0; i<count; i++) {
-        printf("%d, ", arr[i]);
-    }
-    printf("\n");
-    quick(arr, 0, count - 1);
-    printf("排序后的数组：\n");
-    for (int i = 0; i<count; i++) {
-        printf("%d, ", arr[i]);
-    }
-    
-    return 0;
+    printf("min = %d, index = %d\n", k, minIndex);
 }
