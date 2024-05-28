@@ -1,3 +1,4 @@
+#include "course.h"
 #include <math.h>
 #include <limits.h>
 #include <stdio.h>
@@ -5,6 +6,34 @@
 #include <unistd.h>
 
 #define PI 3.14
+
+void digit() {
+    int digit;
+    printf("请输入一串数字：\n");
+    scanf("%d", &digit);
+    //digit/10->drop
+    //digit%10->get
+    int count = 0;
+    if (digit == 0) {
+        count = 1;
+    } else {
+        while (digit > 0) {
+            digit = digit / 10;
+            count++;
+        }
+    }
+    printf("num: %d 位数\n", count);
+}
+
+void multiplication_table() {
+    const int N = 9;
+    for (int i = 1; i <= N; i++) {
+        for(int j = 1; j <= i; j++) {
+            printf("%d*%d=%-4d ", j, i, i *  j);
+        }
+        printf("\n");
+    }
+}
 
 void flip2() {
     int a = 1234;

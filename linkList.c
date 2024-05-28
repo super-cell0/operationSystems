@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 链表节点
-typedef struct ListNode {
-    int value; // 节点值
-    struct ListNode *next; //指向下一个节点的指针
-} ListNode;
+#include "linkList.h"
 
-// 构造函数
 ListNode *newListNode(int value) {
     ListNode *node;
     node = (ListNode *)malloc(sizeof(ListNode));
@@ -21,8 +16,8 @@ ListNode *initListNode() {
     ListNode *n0 = newListNode(1);
     ListNode *n1 = newListNode(2);
     ListNode *n2 = newListNode(3);
-    ListNode *n3 = newListNode(5);
-    ListNode *n4 = newListNode(4);
+    ListNode *n3 = newListNode(4);
+    ListNode *n4 = newListNode(5);
 
     n0->next = n1;
     n1->next = n2;
@@ -32,12 +27,28 @@ ListNode *initListNode() {
     return n0;
 }
 
-// 访问节点
-void printList(ListNode *node) {
-    ListNode *current = node;
-    while (current != NULL) {
-        printf("%d->", current->value);
-        current = current->next;
+void print_list(ListNode *node) {
+    ListNode *crruent = node;
+    while ( crruent != NULL) {
+        printf("%d->", crruent->value);
+        crruent = crruent->next;
     }
-    printf("\n");
+}
+
+void insert_list(ListNode *n0, ListNode *P) {
+    if (n0 != NULL) {
+        ListNode *n1 = n0->next;
+        P->next = n1;
+        n0->next = P;
+    }
+}
+
+void remove_list(ListNode *n0) {
+    if (!n0->next) {
+        return;
+    }
+    ListNode *P = n0->next;
+    ListNode *n1 = P->next;
+    n0->next = n1;
+    free(P);
 }
