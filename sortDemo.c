@@ -3,6 +3,7 @@
 //
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include "sortDemo.h"
 
 void printf_array(int array[], int count) {
@@ -79,7 +80,7 @@ int partition(int nums[], int start, int end) {
     }
     // 将基准数交换至两子数组的分界线
     swap(nums, left, start);
-    printf_array(nums, end + 1);
+    //printf_array(nums, end + 1);
     // 返回基准数的索引
     return left;
 }
@@ -92,3 +93,41 @@ void quick_sort(int nums[], int left, int right) {
     quick_sort(nums, left, pivot - 1);
     quick_sort(nums, pivot + 1, right);
 }
+
+void merge(int num[], int left, int mid, int right) {
+    int temp_size = right - left + 1;
+    // malloc 用于在堆上分配内存，并返回一个指向所分配内存块的指针
+    int *temp = (int *)malloc(temp_size * sizeof(int));
+    int i = left;
+    int j = mid + 1;
+    int k = 0;
+    while (i <= mid && j <= right) {
+        if (num[i] <= num[j]) {
+            temp[k++] = num[i++];
+        } else {
+            temp[k++] = num[j++];
+        }
+    }
+    while (i <= mid) {
+        temp[k++] = num[i++];
+    }
+    while (j <= right) {
+        temp[k++] = num[j++];
+    }
+    for (k = 0; k < temp_size; k++) {
+        num[left+k] = temp[k];
+    }
+    free(temp);
+}
+
+void merge_sort(int num[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+    // 防止整数溢出
+    int mid = left + (right - left) / 2;
+    merge_sort(num, left, mid);
+    merge_sort(num, mid + 1, right);
+    merge(num, left, mid, right);
+}
+

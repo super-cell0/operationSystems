@@ -25,5 +25,8 @@ int partition(int nums[], int start, int end);
 //快速排序
 void quick_sort(int nums[], int left, int right);
 
+//归并排序
+void merge(int num[], int left, int mid, int right);
+void merge_sort(int num[], int left, int right);
 
 #endif //OPERATINGSYSTEMS_SORTDEMO_H

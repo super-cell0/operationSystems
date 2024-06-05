@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "mainHeader.h"
@@ -22,8 +23,14 @@ int main() {
     
     // insert_list(n3, newNode);
     // print_list(head);
-
-    digit();
+    for (int i = 0; i<count; i++) {
+        printf("%d ", nums[i]);
+    }
+    printf("\n");
+    demoSort(nums, count);
+    for (int i = 0; i<count; i++) {
+         printf("%d ", nums[i]);
+    }
 
     return 0;
 }

@@ -3,9 +3,92 @@
 #include <limits.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/_types/_null.h>
 #include <unistd.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 #define PI 3.14
+
+int fib(int n) {
+    if (n == 1 || n == 2) {
+        return n-1;
+    }
+    int result = fib(n-1) + fib(n-2);
+    return result;
+}
+
+int narcissus(int n) {
+    int first = pow(10, n-1);
+    int end = pow(10, n);
+    for (int i = first; i<end; i++) {
+        int num = i;
+        int sum = 0;
+        do {
+            int d = num % 10;
+            sum = sum+pow(d, n);
+            num = num/10;
+        }while (num > 0);
+        if (sum == i) {
+            printf("%d\n", i);
+        }
+    }
+    return 0;
+}
+
+void log_func() {
+    int x;
+    int result = 0;
+    x = 128;
+    int t = x;
+    while (x > 1) {
+        x = x / 2;
+        printf("%d ", x);
+        result++;
+    }
+    printf("log2 of %d is %d", t, result);
+}
+
+int guess_number() {
+    srand(time(NULL));
+    int reward = rand()%100;
+    printf("%d\n", reward);
+    int number_try = 7;
+    bool flag = false;
+    while (number_try > 0 && !flag) {
+        printf("input your guess number:\n");
+        int guess;
+        scanf("%d", &guess);
+        if (guess == reward) {
+            printf("win\n");
+            flag = true;
+        } else if (guess > reward) {
+            printf("guess > reward try again\n");
+        } else {
+            printf("guess < reward try again\n");
+        }
+        number_try = number_try - 1;
+    }
+    if (!flag) {
+        printf("lose");
+    }
+    return 0;
+}
+
+void piecewise() {
+    int x;
+    scanf("%d", &x);
+    int result;
+    if (x < 0) {
+        result = -1;
+    } else if (x == 0) {
+        result = 0;
+    } else {
+        result = (2 * x);
+    }
+    printf("%d\n", result);
+}
 
 void digit() {
     int digit;
@@ -94,13 +177,12 @@ int circle() {
     return 0;
 }
 
-int leap_year(int year) {
-    if (year % 4==0 && year % 100 != 0 || year % 400 == 0) {
+void leap_year(int year) {
+    if ((year % 4==0 && year % 100 != 0) || year % 400 == 0) {
         printf("leap year\n");
     } else {
         printf("not a leap year\n");
     }
-    return 0;
 }
 
 int month(int month) {
@@ -202,5 +284,5 @@ void minValue(int nums[], int count) {
             minIndex = i;
         }
     }
-    printf("min = %d, index = %d\n", k, minIndex);
+    printf("value= %d, index= %d\n", k, minIndex);
 }
