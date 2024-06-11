@@ -2,8 +2,8 @@
 // Created by mac on 2024/5/18.
 //
 
-#ifndef OPERATINGSYSTEMS_MAINHEADER_H
-#define OPERATINGSYSTEMS_MAINHEADER_H
+#ifndef MAIN_HEADER_H
+#define MAIN_HEADER_H
 
 // 随机取出数组的一个元素
 int random_element(int *nums, int count);
@@ -23,4 +23,4 @@ int find(int *num, int count, int target);
 // 找数组中的最小值
 void minValue(int nums[], int count);
 
-#endif //OPERATINGSYSTEMS_MAINHEADER_H
+#endif //MAIN_HEADER_H

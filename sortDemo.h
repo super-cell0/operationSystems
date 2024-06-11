@@ -2,8 +2,8 @@
 // Created by mac on 2024/5/20.
 //
 
-#ifndef OPERATINGSYSTEMS_SORTDEMO_H
-#define OPERATINGSYSTEMS_SORTDEMO_H
+#ifndef OPERATING_SYSTEMS_SORTDEMO_H
+#define OPERATING_SYSTEMS_SORTDEMO_H
 
 // 打印数组元素
 void printf_array(int array[], int count);
@@ -28,5 +28,7 @@ void quick_sort(int nums[], int left, int right);
 //归并排序
 void merge(int num[], int left, int mid, int right);
 void merge_sort(int num[], int left, int right);
+// 计数排序
+void counting_sort(int nums[], int count);
 
-#endif //OPERATINGSYSTEMS_SORTDEMO_H
+#endif //OPERATING_SYSTEMS_SORTDEMO_H
