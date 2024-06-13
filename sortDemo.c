@@ -7,6 +7,39 @@
 #include <string.h>
 #include "sortDemo.h"
 
+void sift_down1(int nums[], int count, int i) {
+    while (1) {
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
+        int m = i;
+        if (l < count && nums[l] > nums[m]) {
+            m = l;
+        }
+        if (r < count && nums[r] > nums[m]) {
+            m = r;
+        }
+        if (m == i) {
+            break;
+        }
+        int t = nums[i];
+        nums[i] = nums[m];
+        nums[m] = t;
+        i = m;
+    }
+}
+
+void heap_sort1(int nums[], int count) {
+    for (int i = count / 2 - 1; i>=0; i--) {
+        sift_down1(nums, count, i);
+    }
+    for (int i = count - 1; i>0; i--) {
+        int t = nums[0];
+        nums[0] = nums[i];
+        nums[i] = t;
+        sift_down1(nums, i, 0);
+    }
+}
+
 void counting_sort(int nums[], int count) {
     //找出最大的数m
     int m = 0;

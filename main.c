@@ -10,39 +10,39 @@
 #include "linkList.h"
 #include "course.h"
 
-void swapDemo(int nums[], int a, int b) {
-    int temp = nums[a];
-    nums[a] = nums[b];
-    nums[b] = temp;
+void demo23(int nums[], int count, int i) {
+    while (1) {
+        int l = 2*i+1;
+        int r = 2*i+2;
+        int m = i;
+        if (l<count && nums[l]>nums[m]) {
+            m = l;
+        }
+        if (r<count && nums[r]>nums[m]) {
+            m = r;
+        }
+        if (m==i) {
+            break;
+        }
+        int t = nums[i];
+        nums[i] = nums[m];
+        nums[m] = t;
+        i = m;
+    }
 }
 
-int partitionDemo(int nums[], int start, int end) {
-    int base = nums[start];
-    int left = start;
-    int right = end;
-    while (left < right) {
-        while (left<right && nums[right] >= base) {
-            right--;
-        }
-        while (left<right && nums[left] <= base) {
-            left++;
-        }
-        if (left < right) {
-            swapDemo(nums, left, right);
-        }
+void demo24(int nums[], int count) {
+    for (int i = count/2-1; i>=0; i--) {
+        demo23(nums, count, i);
     }
-    swapDemo(nums, left, start);
-    return left;
-}
- 
-void demoN(int nums[], int left, int right) {
-    if (left >= right) {
-        return;
+    for (int i = count-1; i>0; i--) {
+        int t = nums[0];
+        nums[0] = nums[i];
+        nums[i] = t;
+        demo23(nums, i, 0);
     }
-    int pivot = partitionDemo(nums, left, right);
-    demoN(nums, left, pivot-1);
-    demoN(nums, pivot+1, right);
 }
+
 
 int main() {
 
@@ -62,7 +62,8 @@ int main() {
         printf("%d ", nums[i]);
     }
     printf("\n");
-    demoN(nums, 0, count-1);
+
+    demo24(nums, count);
 
     for (int i = 0; i<count; i++) {
          printf("%d ", nums[i]);

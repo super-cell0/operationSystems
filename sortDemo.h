@@ -31,4 +31,7 @@ void merge_sort(int num[], int left, int right);
 // 计数排序
 void counting_sort(int nums[], int count);
 
+void sift_down1(int nums[], int count, int i);
+void heap_sort1(int nums[], int count);
+
 #endif //OPERATING_SYSTEMS_SORTDEMO_H
