@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "linkList.h"
+// 链表节点
+typedef struct ListNode {
+    int value; // 节点值
+    struct ListNode *next; //指向下一个节点的指针
+} ListNode;
 
 ListNode *newListNode(int value) {
     ListNode *node;
@@ -27,7 +31,7 @@ ListNode *initListNode() {
     return n0;
 }
 
-void print_list(ListNode *node) {
+void access_list(ListNode *node) {
     ListNode *crruent = node;
     while ( crruent != NULL) {
         printf("%d->", crruent->value);

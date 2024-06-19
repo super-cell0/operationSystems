@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "leetcode.h"
 
+//找出重复元素中的单个元素
 void singleNumber(int nums[], int count) {
     for (int i = 0; i < count; i++) {
         int current = 0;

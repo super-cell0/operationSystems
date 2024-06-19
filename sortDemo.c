@@ -5,7 +5,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "sortDemo.h"
 
 void sift_down1(int nums[], int count, int i) {
     while (1) {
@@ -80,6 +79,16 @@ void select_sort(int nums[], int count) {
         if (min_k != i) {
             swap(nums, i, min_k);
         }
+        for(int k = 0; k<count; k++) {
+            if (k == i) {
+                printf("\033[47;31m%d\033[0m ", nums[k]);
+            } else if (k == min_k) {
+                printf("\033[47;34m%d\033[0m ", nums[k]);
+            } else {
+                printf("%d ", nums[k]);
+            }
+        }
+        printf("\n");
     }
 }
 
@@ -90,6 +99,16 @@ void bubble_sort(int nums[], int count) {
             if (nums[j] > nums[j+1]) {
                 swap(nums, j, j + 1);
                 flag = true;
+                for (int k = 0; k < count; k++) {  
+                    if (k == j) {  
+                        printf("\033[47;31m%d\033[0m ", nums[k]);
+                    } else if (k == j + 1) {  
+                        printf("\033[47;34m%d\033[0m ", nums[k]); 
+                    } else {  
+                        printf("%d ", nums[k]);  
+                    }  
+                }  
+                printf("\n");  
             }
         }
         if (!flag) {
@@ -129,7 +148,6 @@ int partition(int nums[], int start, int end) {
     }
     // 将基准数交换至两子数组的分界线
     swap(nums, left, start);
-    //printf_array(nums, end + 1);
     // 返回基准数的索引
     return left;
 }
@@ -178,13 +196,6 @@ void merge_sort(int num[], int left, int right) {
     merge_sort(num, left, mid);
     merge_sort(num, mid + 1, right);
     merge(num, left, mid, right);
-}
-
-void printf_array(int array[], int count) {
-    for (int i = 0; i < count; i++) {
-        printf("%d,", array[i]);
-    }
-    printf("\n");
 }
 
 void swap(int nums[], int a, int b) {

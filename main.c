@@ -4,12 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "mainHeader.h"
-#include "leetcode.h"
-#include "sortDemo.h"
-#include "linkList.h"
-#include "course.h"
-
 int main() {
 
     int nums[11] = { 6, 3, 7, 5, 1, 2, 4, 4, 6, 12,9};
@@ -29,11 +23,10 @@ int main() {
     // }
     // printf("\n");
 
-
     // for (int i = 0; i<count; i++) {
     //      printf("%d ", nums[i]);
     // }
-    narcissus(3);
+    
 
     return 0;
 }
