@@ -6,7 +6,18 @@
 #include <stdlib.h>
 #include <string.h>
 
-void sift_down1(int nums[], int count, int i) {
+void swap(int nums[], int a, int b);
+void sift_down(int nums[], int count, int i);
+void heap_sort(int nums[], int count);
+
+int main() {
+    int nums[11] = { 6, 3, 7, 5, 1, 2, 4, 4, 6, 12,9};
+    int count = sizeof(nums) / sizeof(nums[0]);
+    
+    return 0;
+}
+
+void sift_down(int nums[], int count, int i) {
     while (1) {
         int l = 2 * i + 1;
         int r = 2 * i + 2;
@@ -27,15 +38,15 @@ void sift_down1(int nums[], int count, int i) {
     }
 }
 
-void heap_sort1(int nums[], int count) {
+void heap_sort(int nums[], int count) {
     for (int i = count / 2 - 1; i>=0; i--) {
-        sift_down1(nums, count, i);
+        sift_down(nums, count, i);
     }
     for (int i = count - 1; i>0; i--) {
         int t = nums[0];
         nums[0] = nums[i];
         nums[i] = t;
-        sift_down1(nums, i, 0);
+        sift_down(nums, i, 0);
     }
 }
 
@@ -196,6 +207,23 @@ void merge_sort(int num[], int left, int right) {
     merge_sort(num, left, mid);
     merge_sort(num, mid + 1, right);
     merge(num, left, mid, right);
+}
+
+// 希尔排序函数
+void shellSort(int nums[], int n) {
+    // 初始间隔选择为数组长度的一半，然后每次减半
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        // 对每个间隔进行插入排序
+        for (int i = gap; i < n; i++) {
+            int temp = nums[i]; // 保存当前元素到temp变量中
+            int j;
+            // 从当前元素位置开始，向前间隔为gap的元素进行比较并交换
+            for (j = i; j >= gap && nums[j - gap] > temp; j -= gap) {
+                nums[j] = nums[j - gap]; // 将间隔为gap的元素后移
+            }
+            nums[j] = temp; // 将temp放入合适的位置
+        }
+    }
 }
 
 void swap(int nums[], int a, int b) {
