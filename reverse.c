@@ -10,8 +10,6 @@ int main() {
     int nums[N] = {34, 82, 49, 102, 7, 94, 23, 11, 50, 31};
 
     reverse2(nums, N);
-
-
     
     return 0;
 }
