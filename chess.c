@@ -2,10 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 行
 #define ROW 15
+// 列
 #define COL 15
+// 黑棋
 #define BLACK 1
+// 白旗
 #define WHITE -1
+// 空棋盘
 #define BLANK 0
 
 void chess_demo();
