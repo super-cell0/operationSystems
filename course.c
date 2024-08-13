@@ -285,3 +285,8 @@ void minValue(int nums[], int count) {
     }
     printf("value= %d, index= %d\n", k, minIndex);
 }
+
+int main() {
+    loop_02(5);
+    return 0;
+}
